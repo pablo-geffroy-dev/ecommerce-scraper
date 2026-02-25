@@ -1,6 +1,5 @@
 import argparse
 import sys
-
 from scraper.logger import get_logger
 
 
@@ -50,3 +49,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+from scraper.http.client import HttpClient
+
+client = HttpClient()
+html = client.get("https://example.com")
+print(html[:200])
