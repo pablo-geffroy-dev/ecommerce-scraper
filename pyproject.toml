@@ -1,0 +1,9 @@
+[project]
+name = "ecommerce-scraper"
+version = "0.1.0"
+description = "Structured e-commerce scraping tool with CLI and logging"
+authors = [{ name = "Your Name" }]
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
