@@ -1,5 +1,9 @@
 # E-commerce Scraper
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Tests](https://img.shields.io/badge/tests-pytest-blue)
+
 A structured Python scraping tool designed to extract product information from e-commerce pages and export the data to CSV.
 
 This project demonstrates a clean architecture approach with modular components, robust error handling, logging, and unit testing.
@@ -98,6 +102,24 @@ logs/scraper.log
 ```
 
 ---
+
+# CLI Example
+
+Example execution:
+
+```
+python -m scraper.cli https://example.com --output products.csv
+```
+
+Console output:
+
+```
+2026-03-09T16:12:08 | INFO | scraper.cli | Scraping URL: https://example.com
+2026-03-09T16:12:08 | INFO | scraper.services.scraper_service | Starting scrape
+2026-03-09T16:12:08 | INFO | scraper.http.client | Sending request
+2026-03-09T16:12:09 | INFO | scraper.services.scraper_service | Scraping successful
+2026-03-09T16:12:09 | INFO | scraper.cli | Product exported to products.csv
+```
 
 # Running Tests
 
