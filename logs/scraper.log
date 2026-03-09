@@ -1,0 +1,12 @@
+2026-03-09T16:19:36 | INFO | scraper.services.scraper_service | Starting scrape for URL: https://example.com
+2026-03-09T16:19:36 | INFO | scraper.http.client | Sending request to https://example.com (attempt 1)
+2026-03-09T16:19:37 | WARNING | scraper.http.client | Request exception occurred: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1081)'))) (attempt 1)
+2026-03-09T16:19:37 | INFO | scraper.http.client | Sleeping 1.50s before retry
+2026-03-09T16:19:38 | INFO | scraper.http.client | Sending request to https://example.com (attempt 2)
+2026-03-09T16:19:39 | WARNING | scraper.http.client | Request exception occurred: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1081)'))) (attempt 2)
+2026-03-09T16:19:39 | INFO | scraper.http.client | Sleeping 3.00s before retry
+2026-03-09T16:19:42 | INFO | scraper.http.client | Sending request to https://example.com (attempt 3)
+2026-03-09T16:19:42 | WARNING | scraper.http.client | Request exception occurred: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1081)'))) (attempt 3)
+2026-03-09T16:19:42 | INFO | scraper.http.client | Sleeping 6.00s before retry
+2026-03-09T16:19:48 | ERROR | scraper.http.client | Request failed after maximum retries
+2026-03-09T16:19:48 | ERROR | scraper.cli | Network error while scraping: HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1081)')))
