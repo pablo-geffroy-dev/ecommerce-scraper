@@ -1,58 +1,35 @@
 import argparse
-import sys
+
+from scraper.http.client import HttpClient
+from scraper.parsers.amazon_parser import AmazonParser
+from scraper.services.scraper_service import ScraperService
+from scraper.exporters.csv_exporter import CSVExporter
 from scraper.logger import get_logger
 
 
-VERSION = "0.1.0"
-
-
-def create_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        prog="ecommerce-scraper",
-        description="Structured e-commerce scraping tool",
-    )
-
-    parser.add_argument(
-        "--version",
-        action="store_true",
-        help="Show application version",
-    )
-
-    parser.add_argument(
-        "--verbose",
-        action="store_true",
-        help="Enable debug logging",
-    )
-
-    return parser
-
-
 def main():
-    parser = create_parser()
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("url", help="Product page URL")
+    parser.add_argument("--output", default="products.csv")
+
     args = parser.parse_args()
 
-    log_level = None
+    logger = get_logger("scraper.cli")
 
-    if args.verbose:
-        log_level = 10  # logging.DEBUG
-    else:
-        log_level = 20  # logging.INFO
+    http_client = HttpClient()
+    parser_obj = AmazonParser()
+    service = ScraperService(http_client, parser_obj)
+    exporter = CSVExporter()
 
-    logger = get_logger("scraper.cli", level=log_level)
+    logger.info(f"Scraping URL: {args.url}")
 
-    if args.version:
-        print(f"ecommerce-scraper v{VERSION}")
-        sys.exit(0)
+    product = service.scrape(args.url)
 
-    logger.info("CLI initialized successfully")
+    exporter.export([product], args.output)
+
+    logger.info(f"Product exported to {args.output}")
 
 
 if __name__ == "__main__":
     main()
-
-
-from scraper.http.client import HttpClient
-
-client = HttpClient()
-html = client.get("https://example.com")
-print(html[:200])
